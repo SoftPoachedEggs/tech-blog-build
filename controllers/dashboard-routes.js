@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const { Post } = require('../models/');
+const { Comment, Post, User } = require('../models/');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // store the results of the db query in a variable called postData. should use something that "finds all" from the Post model. may need a where clause!
     const postData = await Post.findall({
+      include: [{ model: User }],
       where: {
         userId: req.session.userId,
       },
@@ -37,7 +38,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
   try {
     // what should we pass here? we need to get some data passed via the request body
     const postId = req.params.id;
-    const postData = await Post.findByPk(postId;
+    const postData = await Post.findByPk(postId);
 
     if (postData) {
       // serializing the data

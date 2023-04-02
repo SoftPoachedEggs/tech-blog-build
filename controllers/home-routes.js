@@ -6,12 +6,16 @@ router.get('/', async (req, res) => {
   try {
     // we need to get all Posts and include the User for each (change lines 8 and 9)
     const postData = await Post.findAll({
-      include: [User],
+      include: [{ model: User }],
     });
     // serialize the data
     const posts = postData.map((post) => post.get({ plain: true }));
     // we should render all the posts here
-    res.render('all-posts', { posts });
+    const sessionData = {
+      isLoggedIn: req.session.loggedIn,
+      username: req.session.username,
+    };
+    res.render('main', { posts, sessionData });
   } catch (err) {
     res.status(500).json(err);
   }

@@ -1,39 +1,45 @@
-const path = require('path');
-const express = require('express');
-const session = require('express-session');
-const exphbs = require('express-handlebars');
-const helpers = require('./utils/helpers');
+const path = require("path");
+const express = require("express");
+const session = require("express-session");
+const exphbs = require("express-handlebars");
+const routes = require("./controllers");
+const helpers = require("./utils/helpers");
+
+const sequelize = require("./config/config");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const sequelize = require('./config/config');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const hbs = exphbs.create({ helpers });
 
 const sess = {
-  secret: 'Super secret secret',
-  cookie: {},
+  secret: process.env.SECRET,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+    sameSite: "strict",
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+    checkExpirationInterval: 15 * 60 * 1000,
+    expiration: 30 * 60 * 1000,
+  }),
 };
 
 app.use(session(sess));
 
-const hbs = exphbs.create({ helpers });
-
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use(require('./controllers/'));
+app.use(routes);
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
-  sequelize.sync({ force: false });
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log("Now listening"));
 });
