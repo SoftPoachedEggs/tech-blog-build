@@ -1,0 +1,42 @@
+<main class="container">
+  {{#if posts.[0]}}
+  <div class="p-4 p-md-5 mb-4 rounded text-bg-dark" id="top-article">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">{{posts.[0].post_title}}</h1>
+      <p class="lead my-3">{{truncateWords posts.[0].post_content}}</p>
+      <p class="lead mb-0"><a href="/blog/{{posts.[0].post_id}}" class="text-white fw-bold">Read more...</a></p>
+    </div>
+  </div>
+  {{/if}}  
+<div class="row mb-2">
+{{#if blogs.[2]}}
+<div class="col-md-12">
+    <div
+      class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static text-white"  id="blog-card-1">
+        <strong class="d-inline-block mb-2 text-primary">{{posts.[2].post_topic}}</strong>
+        <h3 class="mb-0">{{posts.[2].post_title}}</h3>
+        <div class="mb-1 text-muted">{{format_date blogs.[2].createdAt}}</div>
+        <p class="card-text mb-auto">{{truncateWords blogs.[2].post_content}}...</p>
+        <a href="/blog/{{posts.[2].post_id}}" class="stretched-link text-white">Continue reading</a>
+      </div>
+    </div>
+  {{/if}}
+  {{#if posts.[1]}}
+  <div class="col-12">
+      <div
+        class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+      >
+        <div class="col p-4 d-flex flex-column position-static text-white" id="blog-card-2">
+          <strong class="d-inline-block mb-2 text-success">{{posts.[1].post_topic}}</strong>
+          <h3 class="mb-0">{{posts.[1].post_title}}</h3>
+          <div class="mb-1 text-muted">{{format_date blogs.[1].createdAt}}</div>
+          <p class="mb-auto">{{truncateWords blogs.[1].post_content}}...</p>
+          <a href="/blog/{{posts.[1].post_id}}" class="stretched-link text-white">Continue reading</a>
+        </div>
+      </div>
+    </div>
+    
+    {{/if}}
+</div>
+</div>

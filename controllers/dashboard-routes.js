@@ -26,34 +26,34 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
-router.get('/new', withAuth, (req, res) => {
-  // what view should we send the client when they want to create a new-post? (change this next line)
-  res.render('all-posts-admin', {
-    // again, rendering with a different layout than main! no change needed
-    layout: 'dashboard',
-  });
-});
+// router.get('/new', withAuth, (req, res) => {
+//   // what view should we send the client when they want to create a new-post? (change this next line)
+//   res.render('all-posts-admin', {
+//     // again, rendering with a different layout than main! no change needed
+//     layout: 'dashboard',
+//   });
+// });
 
-router.get('/edit/:id', withAuth, async (req, res) => {
-  try {
-    // what should we pass here? we need to get some data passed via the request body
-    const postId = req.params.id;
-    const postData = await Post.findByPk(postId);
+// router.get('/edit/:id', withAuth, async (req, res) => {
+//   try {
+//     // what should we pass here? we need to get some data passed via the request body
+//     const postId = req.params.id;
+//     const postData = await Post.findByPk(postId);
 
-    if (postData) {
-      // serializing the data
-      const post = postData.get({ plain: true });
-      // which view should we render if we want to edit a post?
-      res.render('edit-post', {
-        layout: 'dashboard',
-        post,
-      });
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    res.redirect('login');
-  }
-});
+//     if (postData) {
+//       // serializing the data
+//       const post = postData.get({ plain: true });
+//       // which view should we render if we want to edit a post?
+//       res.render('edit-post', {
+//         layout: 'dashboard',
+//         post,
+//       });
+//     } else {
+//       res.status(404).end();
+//     }
+//   } catch (err) {
+//     res.redirect('login');
+//   }
+// });
 
 module.exports = router;

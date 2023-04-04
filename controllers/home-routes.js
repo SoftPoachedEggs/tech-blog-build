@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../models/');
 
+
 // get all posts for homepage
 router.get('/', async (req, res) => {
   try {
@@ -15,43 +16,43 @@ router.get('/', async (req, res) => {
       isLoggedIn: req.session.loggedIn,
       username: req.session.username,
     };
-    res.render('main', { posts, sessionData });
+    res.render('home', { posts, sessionData });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// get single post
-router.get('/post/:id', async (req, res) => {
-  try {
-    const postId = req.params.id;
-    // what should we pass here? we need to get some data passed via the request body (something.something.id?)
-    // change the model below, but not the findByPk method.
-    const postData = await SomeModel.findByPk(postId, {
-      // helping you out with the include here, no changes necessary
-      include: [
-        User,
-        {
-          model: Comment,
-          include: [User],
-        },
-      ],
-    });
+// // get single post
+// router.get('/post/:id', async (req, res) => {
+//   try {
+//     const postId = req.params.id;
+//     // what should we pass here? we need to get some data passed via the request body (something.something.id?)
+//     // change the model below, but not the findByPk method.
+//     const postData = await SomeModel.findByPk(postId, {
+//       // helping you out with the include here, no changes necessary
+//       include: [
+//         User,
+//         {
+//           model: Comment,
+//           include: [User],
+//         },
+//       ],
+//     });
 
-    if (postData) {
-      // serialize the data
-      const post = postData.get({ plain: true });
-      // which view should we render for a single-post?
-      res.render('single-post', { post });
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     if (postData) {
+//       // serialize the data
+//       const post = postData.get({ plain: true });
+//       // which view should we render for a single-post?
+//       res.render('single-post', { post });
+//     } else {
+//       res.status(404).end();
+//     }
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-// giving you the login and signup route pieces below, no changes needed.
+// // giving you the login and signup route pieces below, no changes needed.
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
