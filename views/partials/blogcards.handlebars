@@ -9,15 +9,15 @@
   </div>
   {{/if}}  
 <div class="row mb-2">
-{{#if blogs.[2]}}
+{{#if userPosts.[2]}}
 <div class="col-md-12">
     <div
       class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
       <div class="col p-4 d-flex flex-column position-static text-white"  id="blog-card-1">
         <strong class="d-inline-block mb-2 text-primary">{{posts.[2].post_topic}}</strong>
         <h3 class="mb-0">{{posts.[2].post_title}}</h3>
-        <div class="mb-1 text-muted">{{format_date blogs.[2].createdAt}}</div>
-        <p class="card-text mb-auto">{{truncateWords blogs.[2].post_content}}...</p>
+        <div class="mb-1 text-muted">{{format_date userPosts.[2].createdAt}}</div>
+        <p class="card-text mb-auto">{{truncateWords userPosts.[2].post_content}}...</p>
         <a href="/blog/{{posts.[2].post_id}}" class="stretched-link text-white">Continue reading</a>
       </div>
     </div>
@@ -30,8 +30,8 @@
         <div class="col p-4 d-flex flex-column position-static text-white" id="blog-card-2">
           <strong class="d-inline-block mb-2 text-success">{{posts.[1].post_topic}}</strong>
           <h3 class="mb-0">{{posts.[1].post_title}}</h3>
-          <div class="mb-1 text-muted">{{format_date blogs.[1].createdAt}}</div>
-          <p class="mb-auto">{{truncateWords blogs.[1].post_content}}...</p>
+          <div class="mb-1 text-muted">{{format_date userPosts.[1].createdAt}}</div>
+          <p class="mb-auto">{{truncateWords userPosts.[1].post_content}}...</p>
           <a href="/blog/{{posts.[1].post_id}}" class="stretched-link text-white">Continue reading</a>
         </div>
       </div>

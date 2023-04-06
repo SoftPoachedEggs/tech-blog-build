@@ -1,6 +1,6 @@
-const router = require('express').Router();
-const { Post, Comment, User } = require('../models/');
-
+const router = require("express").Router();
+const withAuth = require("../utils/auth");
+const { Comment, Post, User } = require("../Models");
 
 // get all posts for homepage
 router.get('/', async (req, res) => {
@@ -16,10 +16,38 @@ router.get('/', async (req, res) => {
       isLoggedIn: req.session.loggedIn,
       username: req.session.username,
     };
+    console.log("This is the sessionData.username", sessionData.username);
     res.render('home', { posts, sessionData });
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      include: [{ model: User }],
+      where: {
+        user_id: req.session.userId,
+      },
+    });
+    const userPosts = postData.map((b) => b.get({ plain: true }));
+    const sessionData = {
+      isLoggedIn: req.session.loggedIn,
+      username: req.session.username,
+    };
+    console.log("This is the sessionData.username", sessionData.username);
+    console.log("This is the userPosts", userPosts);
+    res.render('dashboard', { userPosts, sessionData });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get('/new-post', withAuth, (req, res) => {
+  // what view should we send the client when they want to create a new-post? (change this next line)
+  res.render('new-post');
 });
 
 // // get single post

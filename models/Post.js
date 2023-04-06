@@ -14,13 +14,9 @@ Post.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "User",
+        model: "user",
         key: "user_id",
       },
-    },
-    post_topic: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     post_title: {
       type: DataTypes.STRING,
@@ -30,6 +26,10 @@ Post.init(
         type: DataTypes.TEXT,
         allowNull: false,
       },
+    post_date: {
+      type: DataTypes.STRING,
+      allowNull: false,      
+    }
   },
   {
     sequelize,

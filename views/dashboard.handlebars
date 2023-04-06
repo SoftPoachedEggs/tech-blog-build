@@ -1,1 +1,26 @@
 {{>dashnav}}
+
+  <section id="user-posts" class="text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 justify-content-center align-items-center">
+          <h2>My Articles</h2>
+          <hr />
+          {{#if userPosts}}
+            {{#each userPosts as |blogPost|}}
+              <article class="blog-post">
+                <h2 class="blog-post-title mb-1">{{blogPost.post_title}}</h2>
+                <p
+                <p class="blog-post-meta">Created:
+                  {{format_date blogPost.post_date}}</p>
+                <a href="/blog/{{blogPost.post_id}}" class="text-white">View Article</a>
+              </article>
+              <hr />
+            {{/each}}
+          {{else}}
+            <h2>You Haven't Written Any Articles Yet...</h2>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </section>

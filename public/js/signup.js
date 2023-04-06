@@ -15,17 +15,14 @@ const signupFormHandler = async function(event) {
   });
 
   if (response.ok) {
-    document.location.replace('/');
+    document.location.replace('/dashboard');
     alert('New User Added');
   } else {
     alert('Failed to sign up');
   }
 };
 
-const loginRedirect = async (event) => {
-  event.preventDefault();
-  document.location.replace("/login");
-};
+
 document
   .querySelector('#submit-account-button')
   .addEventListener('click', signupFormHandler);
