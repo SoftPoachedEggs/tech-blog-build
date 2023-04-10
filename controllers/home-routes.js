@@ -23,62 +23,19 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get("/dashboard", withAuth, async (req, res) => {
+//GET STINGLE POST ------TODO Render clicked blog post on page. 
+router.get('/blog/:id', async (req, res) => {
   try {
-    const postData = await Post.findAll({
-      include: [{ model: User }],
-      where: {
-        user_id: req.session.userId,
-      },
-    });
-    const userPosts = postData.map((b) => b.get({ plain: true }));
-    const sessionData = {
-      isLoggedIn: req.session.loggedIn,
-      username: req.session.username,
-    };
-    console.log("This is the sessionData.username", sessionData.username);
-    console.log("This is the userPosts", userPosts);
-    res.render('dashboard', { userPosts, sessionData });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
-  }
-});
-
-router.get('/new-post', withAuth, (req, res) => {
-  // what view should we send the client when they want to create a new-post? (change this next line)
-  res.render('new-post');
-});
-
-// // get single post
-// router.get('/post/:id', async (req, res) => {
-//   try {
-//     const postId = req.params.id;
-//     // what should we pass here? we need to get some data passed via the request body (something.something.id?)
-//     // change the model below, but not the findByPk method.
-//     const postData = await SomeModel.findByPk(postId, {
-//       // helping you out with the include here, no changes necessary
-//       include: [
-//         User,
-//         {
-//           model: Comment,
-//           include: [User],
-//         },
-//       ],
-//     });
-
-//     if (postData) {
-//       // serialize the data
-//       const post = postData.get({ plain: true });
-//       // which view should we render for a single-post?
-//       res.render('single-post', { post });
-//     } else {
-//       res.status(404).end();
-//     }
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+      const userPost = await Post.findOne({
+        where: {
+          post_id:req.params.id,
+        }
+      });
+      res.status(200).json(userPost);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 // // giving you the login and signup route pieces below, no changes needed.
 router.get('/login', (req, res) => {

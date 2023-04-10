@@ -12,8 +12,8 @@
                 <h2 class="blog-post-title mb-1">{{blogPost.post_title}}</h2>
                 <p
                 <p class="blog-post-meta">Created:
-                  {{format_date blogPost.post_date}}</p>
-                <a href="/blog/{{blogPost.post_id}}" class="text-white">View Article</a>
+                  {{blogPost.post_date}}</p>
+                <a href="/edit/{{blogPost.post_id}}" class="text-white">Edit Article</a>
               </article>
               <hr />
             {{/each}}

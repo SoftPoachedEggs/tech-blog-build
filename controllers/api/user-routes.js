@@ -86,25 +86,21 @@ router.post('/new-post', async (req, res) => {
     res.status(500).json(err);
   }
 });
+//~~~~~~~~~~~~~~~~~~~~~Edit Post~~~~~~~~~~~~~~~~~~~~~
 
 //USER BLOG POST UPDATE REQUEST
-router.put('/:id', withAuth, async (req, res) => {
+router.put('/edit/:id', withAuth, async (req, res) => {
   try {
-    const [affectedRows] = await Post.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
+    const updatePost = await Post.update(req.body, {
+      post_title: req.body.post_title,
+      post_body: req.body.post_body,
     });
-
-    if (affectedRows > 0) {
-      res.status(200).end();
-    } else {
-      res.status(404).end();
-    }
+    res.status(200).json(updatePost);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 //USER BLOG-POST DELETE REQUEST
 router.delete('/:id', withAuth, async (req, res) => {

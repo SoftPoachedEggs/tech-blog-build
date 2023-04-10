@@ -1,22 +1,29 @@
-const postId = document.querySelector('input[name="post-id"]').value;
+const hiddenPostNumber = document.querySelector('.hidden-post-number');
+const postId = hiddenPostNumber.textContent
+
+console.log("post number being updated: ", postId)
 
 const editFormHandler = async function(event) {
   event.preventDefault();
+  
+  const titleEl = document.querySelector('.edit-title');
+  const bodyEl = document.querySelector('.edit-content');
 
-  const title = document.querySelector('input[name="post-title"]').value;
-  const body = document.querySelector('textarea[name="post-body"]').value;
+  let titleText = titleEl.textContent
+  let bodyText = bodyEl.textContent
 
-  await fetch(`/api/post/${postId}`, {
+  console.log("this is the updated title: ", titleText)
+  console.log("this is the updated body: ", bodyText)
+  await fetch(`/api/edit/${postId}`, {
     method: 'PUT',
     body: JSON.stringify({
-      title,
-      body
+      post_title: titleText,
+      post_body: bodyText
     }),
     headers: {
       'Content-Type': 'application/json'
     }
   });
-
   document.location.replace('/dashboard');
 };
 
@@ -32,5 +39,5 @@ document
   .querySelector('#edit-post-form')
   .addEventListener('submit', editFormHandler);
 document
-  .querySelector('#delete-btn')
+  .querySelector('#delete-post-btn')
   .addEventListener('click', deleteClickHandler);

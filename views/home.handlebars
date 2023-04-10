@@ -1,3 +1,7 @@
-{{>navbar}}
 
+{{#if isLoggedIn}}
+  {{>dashnav}}
+{{else}}
+{{>navbar}}
+{{/if}}
 {{>blogcards}}

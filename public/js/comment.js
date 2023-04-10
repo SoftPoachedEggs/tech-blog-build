@@ -1,3 +1,5 @@
+let commentDate = dayjs().format("YYYY-MM-DD");
+
 const commentFormHandler = async function(event) {
   event.preventDefault();
 
@@ -8,8 +10,8 @@ const commentFormHandler = async function(event) {
     await fetch('/api/comment', {
       method: 'POST',
       body: JSON.stringify({
-        postId,
-        body
+        comment_content: commentContent.value,
+        comment_date: commentDate,
       }),
       headers: {
         'Content-Type': 'application/json'

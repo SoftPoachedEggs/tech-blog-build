@@ -1,8 +1,13 @@
-<form>
+{{>dashnav}}
+
+<form id ="edit-post-form">
   <label for="title">Title</label><br>
-  <input type="text" id="editTitle" name="editTitle"><br>
+  <input type="text" id="edit-title" name="editTitle" value="{{userPost.post_title}}"><br>
   <label for="content">Content:</label><br>
-  <input type="text" id="editContent" name="editContent">
-  <input type="submit" value="Edit Post">
-  <input type="delete" value="Delete Post">
+  <input type="text" id="edit-content" name="editContent" value="{{userPost.post_body}}">
+  <input type="submit" id="edit" value="Update Post">
 </form>
+<input id="delete-post-btn" type="submit" value="Delete Post">
+<div class="hidden-post-number">{{userPost.post_id}}</div>
+
+<script src="/js/edit.js"></script>
