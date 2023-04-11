@@ -92,8 +92,9 @@ router.post('/new-post', async (req, res) => {
 router.put('/edit/:id', withAuth, async (req, res) => {
   try {
     const updatePost = await Post.update(req.body, {
-      post_title: req.body.post_title,
-      post_body: req.body.post_body,
+      where: {
+        post_id: req.params.id,
+      },
     });
     res.status(200).json(updatePost);
   } catch (err) {
@@ -103,22 +104,17 @@ router.put('/edit/:id', withAuth, async (req, res) => {
 
 
 //USER BLOG-POST DELETE REQUEST
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/edit/:id', withAuth, async (req, res) => {
   try {
-    const [affectedRows] = Post.destroy({
+    const deletePost = Post.destroy({
       where: {
-        id: req.params.id,
+        post_id: req.params.id,
       },
     });
-
-    if (affectedRows > 0) {
-      res.status(200).end();
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  res.status(200).json(deletePost);
+} catch (err) {
+  res.status(500).json(err);
+}
 });
 
 

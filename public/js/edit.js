@@ -1,20 +1,19 @@
 const hiddenPostNumber = document.querySelector('.hidden-post-number');
 const postId = hiddenPostNumber.textContent
+const titleEl = document.querySelector('#edit-title');
+const bodyEl = document.querySelector('#edit-content');
 
 console.log("post number being updated: ", postId)
 
-const editFormHandler = async function(event) {
-  event.preventDefault();
-  
-  const titleEl = document.querySelector('.edit-title');
-  const bodyEl = document.querySelector('.edit-content');
+const editFormHandler = async function() {
+  console.log('edit btn clicked: ')
 
-  let titleText = titleEl.textContent
-  let bodyText = bodyEl.textContent
+  let titleText = titleEl.value
+  let bodyText = bodyEl.value
 
   console.log("this is the updated title: ", titleText)
   console.log("this is the updated body: ", bodyText)
-  await fetch(`/api/edit/${postId}`, {
+  await fetch(`/api/user/edit/${postId}`, {
     method: 'PUT',
     body: JSON.stringify({
       post_title: titleText,
@@ -27,17 +26,31 @@ const editFormHandler = async function(event) {
   document.location.replace('/dashboard');
 };
 
-const deleteClickHandler = async function() {
-  await fetch(`/api/post/${postId}`, {
-    method: 'DELETE'
-  });
+const deleteClickHandler = async function () {
+  try {
+    const confirmDelete = confirm("Are you sure you want to delete this post?");
+    if (confirmDelete) {
 
-  document.location.replace('/dashboard');
+      const response = await fetch(`/api/user/edit/${postId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        document.location.replace("/dashboard");
+        alert("Post Deleted!");
+      } else {
+        alert("Failed to delete post.");
+      }
+    } else {
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 document
-  .querySelector('#edit-post-form')
-  .addEventListener('submit', editFormHandler);
+  .querySelector('#update-btn')
+  .addEventListener('click', editFormHandler);
 document
   .querySelector('#delete-post-btn')
   .addEventListener('click', deleteClickHandler);
