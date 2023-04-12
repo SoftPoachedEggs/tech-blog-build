@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
       isLoggedIn: req.session.loggedIn,
       username: req.session.username,
     };
-    console.log("This is the sessionData.username", sessionData.username);
     res.render('home', { posts, sessionData });
   } catch (err) {
     res.status(500).json(err);
@@ -24,14 +23,20 @@ router.get('/', async (req, res) => {
 });
 
 //GET STINGLE POST ------TODO Render clicked blog post on page. 
-router.get('/blog/:id', async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
-      const userPost = await Post.findOne({
+      const postData = await Post.findOne({
         where: {
           post_id:req.params.id,
         }
       });
-      res.status(200).json(userPost);
+      const userPost = postData ? postData.get({ plain: true }) : null;
+      console.log(`user post: `, userPost)
+      const sessionData = {
+        isLoggedIn: req.session.loggedIn,
+        username: req.session.username,
+      };
+      res.render('blogpost', { userPost, sessionData });
     } catch (err) {
       res.status(500).json(err);
     }

@@ -23,6 +23,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
       res.status(500).json(err);
     }
   });
+  
   //RENDER NEW-POST FORMS TO PAGE
 
   router.get('/new-post', withAuth, (req, res) => {
