@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User  = require('../../models/user');
 const Post  = require('../../models/post');
+const Comment  = require('../../models/comment');
 const withAuth = require('../../utils/auth');
 
 //~~~~~~~~~~~~~~~~~~USER ACCOUNT CREATION~~~~~~~~~~~~~~~~
@@ -111,12 +112,26 @@ router.delete('/edit/:id', withAuth, async (req, res) => {
         post_id: req.params.id,
       },
     });
-  res.status(200).json(deletePost);
+  
 } catch (err) {
   res.status(500).json(err);
 }
 });
+//~~~~~~~~~~~~User Comment Route~~~~~~~~~~~~~~
 
+router.post('/comment', withAuth, async (req, res) => {
+  try {
+    const newComment = await Comment.create({
+      user_id: req.session.userId,
+      post_id: req.body.post_id,
+      comment_text: req.body.comment_text,
+      comment_date: req.body.comment_date,
+    });
+    res.status(200).json(newComment);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 

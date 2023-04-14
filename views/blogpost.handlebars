@@ -1,10 +1,9 @@
-{{!-- {{#if sessionData.isLoggedIn}}
+{{#if sessionData.isLoggedIn}}
   {{>dashnav}}
 {{else}}
 {{>navbar}}
-{{/if}} --}}
+{{/if}}
 
-{{!-- displays featured article --}}
 <section id="blogPost-section">
   <div class="container">
     <div class="card mb-3">
@@ -15,7 +14,7 @@
         <h2 class="card-title">{{userPost.post_title}}</h2>
         <p class="d-none" id="post-id">{{userPost.post_id}}</p>
         <p class="card-text">{{userPost.post_body}}</p>
-        <p>By: {{userPost.username}}</p>
+        <p>By: {{userPost.user.username}}</p>
         <p>{{userPost.post_date}}</p>
       </div>
 
@@ -26,10 +25,10 @@
       </div>
       <div class="card-body">
         <ul>
-          {{#each blog.comments as |comment|}}
-            <p>{{comment.user.username}}</p> 
-              <p>Date: {{comment.post_date}}</p>
-            <li>{{comment.comment_text}}</li>
+          {{#each userComments as |comment|}}
+            <p>{{comment.comment_text}}</p>
+            <p>By: {{comment.user.username}} Date: {{comment.post_date}}</p> 
+            <p>Date: {{comment.post_date}}</p>
             <hr />
           {{/each}}
         </ul>
@@ -43,13 +42,15 @@
         </div>
         <div class="card-body d-flex flex-column">
           <textarea class="form-control mb-4" id="comment-text" rows="5" placeholder="Add Comment Here..."></textarea>
-          <button class="btn btn-outline-secondary" id="comment-btn">Add Comment</button>
+          <button class="btn btn-outline-secondary" id="post-comment-btn">Add Comment</button>
         </div>
       </div>
     </div>
-    {{/if}}
+{{/if}}
 
 
   </div>
 </section>
 
+
+<script src="/js/comment.js"></script>

@@ -1,27 +1,42 @@
 let commentDate = dayjs().format("YYYY-MM-DD");
+console.log('comment date: ', commentDate)
 
-const commentFormHandler = async function(event) {
-  event.preventDefault();
 
-  const postId = document.querySelector('input[name="post-id"]').value;
-  const body = document.querySelector('textarea[name="comment-body"]').value;
+const postEl = document.querySelector('#post-id')
+const postID = parseInt(postEl.textContent)
 
-  if (body) {
-    await fetch('/api/comment', {
+console.log('post ID: ', typeof postID)
+
+const textEl = document.querySelector('#comment-text')
+let textContent = textEl.value
+
+const commentFormHandler = async function() {
+
+  const textEl = document.querySelector('#comment-text')
+  let textContent = textEl.value
+
+  try {
+    const newComment = await fetch('/api/user/comment', {
       method: 'POST',
       body: JSON.stringify({
-        comment_content: commentContent.value,
+        post_id: postID,
+        comment_text: textContent,
         comment_date: commentDate,
       }),
       headers: {
         'Content-Type': 'application/json'
       }
     });
-
-    document.location.reload();
+    console.log("this is the newComment", newComment);
+    if (newComment.ok) {
+      alert("New comment created!");
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
+
 document
-  .querySelector('#new-comment-form')
-  .addEventListener('submit', commentFormHandler);
+  .querySelector('#post-comment-btn')
+  .addEventListener('click', commentFormHandler);

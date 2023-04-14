@@ -29,6 +29,10 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    comment_date: {
+      type: DataTypes.STRING,
+      allowNull: false,      
+    }
   },
   {
     sequelize,

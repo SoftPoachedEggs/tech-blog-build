@@ -11,8 +11,6 @@ const editFormHandler = async function() {
   let titleText = titleEl.value
   let bodyText = bodyEl.value
 
-  console.log("this is the updated title: ", titleText)
-  console.log("this is the updated body: ", bodyText)
   await fetch(`/api/user/edit/${postId}`, {
     method: 'PUT',
     body: JSON.stringify({
