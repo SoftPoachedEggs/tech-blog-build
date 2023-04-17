@@ -3,7 +3,7 @@ const withAuth = require("../utils/auth");
 const { Comment, Post, User } = require("../Models");
 
 // get all posts for homepage
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     // we need to get all Posts and include the User for each (change lines 8 and 9)
     const postData = await Post.findAll({
@@ -16,44 +16,46 @@ router.get('/', async (req, res) => {
       isLoggedIn: req.session.loggedIn,
       username: req.session.username,
     };
-    res.render('home', { posts, sessionData });
+    res.render("home", { posts, sessionData });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//GET STINGLE POST ------TODO Render clicked blog post on page. 
-router.get('/post/:id', async (req, res) => {
+//GET STINGLE POST ------TODO Render clicked blog post on page.
+router.get("/post/:id", async (req, res) => {
   try {
-        const postData = await Post.findOne({
-        where: {
-          post_id:req.params.id,
-        },
-        include: [{ model: User, as: 'user' }]
-        });
-        const commentData = await Comment.findAll({
-          include: [{ model: User }],
-          where: {
-            post_id: req.params.id,
-          },
-        });
+    const postData = await Post.findOne({
+      where: {
+        post_id: req.params.id,
+      },
+      include: [{ model: User, as: "user" }],
+    });
+    const commentData = await Comment.findAll({
+      include: [{ model: User }],
+      where: {
+        post_id: req.params.id,
+      },
+    });
 
-      const userPost = postData ? postData.get({ plain: true }) : null;
-      const userComments = commentData.map((comment) => comment.get({ plain: true }));
+    const userPost = postData ? postData.get({ plain: true }) : null;
+    
+    const userComments = commentData.map((comment) =>
+      comment.get({ plain: true })
+    );
 
+    console.log(`user post: `, userPost);
+    console.log("userComments: ", userComments);
 
-      console.log(`user post: `, userPost)
-      console.log('userComments: ', userComments)
-
-      const sessionData = {
-        isLoggedIn: req.session.loggedIn,
-        username: req.session.username,
-      };
-      res.render('blogpost', { userPost, sessionData, userComments });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+    const sessionData = {
+      isLoggedIn: req.session.loggedIn,
+      username: req.session.username,
+    };
+    res.render("blogpost", { userPost, sessionData, userComments });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 //~~~~~~~~~~~GET COMMENTS~~~~~~~~~~~
 
 // router.get('/comment/:id', async (req, res) => {
@@ -73,21 +75,21 @@ router.get('/post/:id', async (req, res) => {
 // })
 
 //~~~~~LOGIN GET ROUTE~~~~~~~~~~
-router.get('/login', (req, res) => {
+router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
-  res.render('login');
+  res.render("login");
 });
 
-router.get('/signup', (req, res) => {
+router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
 
-  res.render('signup');
+  res.render("signup");
 });
 
 module.exports = router;

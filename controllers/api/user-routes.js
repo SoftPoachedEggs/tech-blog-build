@@ -4,6 +4,15 @@ const Post  = require('../../models/post');
 const Comment  = require('../../models/comment');
 const withAuth = require('../../utils/auth');
 
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
+
+
 //~~~~~~~~~~~~~~~~~~USER ACCOUNT CREATION~~~~~~~~~~~~~~~~
 //NEW USER SIGNUP REQUEST
 router.post('/signup', async (req, res) => {
@@ -60,15 +69,7 @@ router.post('/login', async (req, res) => {
 });
 
 //Logout post request
-router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
+
 
 //~~~~~~~~~~~~~~~~USER BLOG-POST ROUTES~~~~~~~~~~~~~~~~~~ 
 
@@ -80,6 +81,8 @@ router.post('/new-post', async (req, res) => {
       post_title: req.body.post_title,
       post_body: req.body.post_body,
       post_date: req.body.post_date,
+      post_topic: req.body.post_topic,
+      image_url: req.body.image_url,
     });
     console.log('this is new post', newPost)
     res.status(200).json(newPost);

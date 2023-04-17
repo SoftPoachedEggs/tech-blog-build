@@ -1,9 +1,40 @@
-<form id="signup-form">
-  <label for="username">Create Username:</label><br>
-  <input type="text" id="username-input-signup" name="username"><br>
-  <label for="pwd"> Create Password:</label><br>
-  <input type="createPassword" id="password-input-signup" name="pwd">
-  <input id ="submit-account-button" type="submit" value="Sign up!">
-</form>
+{{>navbar}}
+<body>
+
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <!-- The image half -->
+        
+        <!-- The content half -->
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+
+                <!-- Demo content-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h3 class="display-4 navbar-brand"><strong>Welcome to Tech-licious!</strong></h3>
+                            <p class="text-muted mb-4">Thank you for your interest in becomming a contributor. We look forward to reading your tech-tributions!</p>
+                            <form>
+                                <div class="form-group mb-3">
+                                    <input id="username-input-signup" placeholder="Username" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="password-input-signup" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                </div>
+                                <button type="submit" id="submit-account-button" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Create Account</button>
+                                <div class="text-center d-flex justify-content-between mt-4">
+                                  <p class="text-center">Already a member? <a href="/login">Log In</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
+            </div>
+        </div><!-- End -->
+          <div class="col-md-6 d-none d-md-flex bg-image" style="background-position: center center;background-size:cover;background-image:url(/assets/health-lab.jpg);"></div>
+    </div>
+</div>
 
 <script src="/js/signup.js"></script>

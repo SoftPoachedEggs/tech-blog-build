@@ -29,6 +29,14 @@ Post.init(
     post_date: {
       type: DataTypes.STRING,
       allowNull: false,      
+    },
+    post_topic: {
+      type: DataTypes.STRING,
+      allowNull: false,      
+    },
+    image_url: {
+      type: DataTypes.STRING,
+      allowNull: false,
     }
   },
   {

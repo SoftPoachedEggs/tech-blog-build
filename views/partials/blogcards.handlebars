@@ -1,42 +1,185 @@
-<main class="container">
+<div class="container">
   {{#if posts.[0]}}
-  <div class="p-4 p-md-5 mb-4 rounded text-bg-dark" id="top-article">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic">{{posts.[0].post_title}}</h1>
-      <p class="lead my-3">{{posts.[0].post_content}}</p>
-      <p class="lead mb-0"><a href="/post/{{posts.[0].post_id}}" class="text-white fw-bold">Read more...</a></p>
-    </div>
-  </div>
-  {{/if}}  
-<div class="row mb-2">
-{{#if posts.[2]}}
-<div class="col-md-12">
-    <div
-      class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col p-4 d-flex flex-column position-static text-white"  id="blog-card-1">
-        <strong class="d-inline-block mb-2 text-primary">{{posts.[2].post_topic}}</strong>
-        <h3 class="mb-0">{{posts.[2].post_title}}</h3>
-        <div class="mb-1 text-muted">{{posts.[2].post_date}}</div>
-        <p class="card-text mb-auto">{{posts.[2].post_content}}...</p>
-        <a href="/post/{{posts.[2].post_id}}" class="stretched-link text-white">Continue reading</a>
-      </div>
-    </div>
-  {{/if}}
-  {{#if posts.[1]}}
-  <div class="col-12">
-      <div
-        class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-      >
-        <div class="col p-4 d-flex flex-column position-static text-white" id="blog-card-2">
-          <strong class="d-inline-block mb-2 text-success">{{posts.[1].post_topic}}</strong>
-          <h3 class="mb-0">{{posts.[1].post_title}}</h3>
-          <div class="mb-1 text-muted">{{posts.[1].post_date}}</div>
-          <p class="mb-auto">{{posts.[1].post_content}}...</p>
-          <a href="/post/{{posts.[1].post_id}}" class="stretched-link text-white">Continue reading</a>
-        </div>
-      </div>
-    </div>
+	<div class="jumbotron jumbotron-fluid mb-3 pt-0 pb-0 bg-lightblue position-relative">
+		<div class="pl-4 pr-0 tofront">
+			<div class="row justify-content-between">
+				<div class="col-md-6 pt-6 pb-6 align-self-center">
+					<h1 class="secondfont mb-3 font-weight-bold">{{posts.[0].post_title}}</h1>
+					<p class="mb-3">
+						{{{truncateBlog posts.[0].post_body}}}...
+					</p>
+					<a href="/post/{{posts.[0].post_id}}" class="btn btn-dark">Read More</a>
+				</div>
+				<div class="header-image col-md-6 d-none d-md-block pr-0" style="background-size:cover;background-image:url({{posts.[0].image_url}});">	</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{/if}} 
+ 
+<div class="container pt-4 pb-4">
+	<div class="row">
+    {{#if posts.[1]}}
+		<div class="col-lg-6">
+			<div class="card border-0 mb-4 box-shadow h-xl-300">              
+                <div style="background-image: url(/assets/cyber-sec.jpg); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>               
+				<div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
+					<h2 class="h4 font-weight-bold">
+					<a class="text-dark" href="./article.html">{{posts.[1].post_title}}</a>
+					</h2>
+					<p class="card-text">
+						 {{truncateBlog posts.[1].post_body}}...
+					</p>
+					<div>
+						<small class="d-block"><a class="text-muted" href="/post/{{posts.[1].post_id}}">{{posts.[1].user.username}}</a></small>
+						<small class="text-muted">{{posts.[1].post_date}} &middot; 5 min read</small>
+					</div>
+				</div>
+			</div>
+		</div>
+    {{/if}} 
     
-    {{/if}}
+		<div class="col-lg-6">
+			<div class="flex-md-row mb-4 box-shadow h-xl-300">
+        
+        {{#if posts.[2]}}
+				<div class="mb-3 d-flex align-items-center">
+					<img height="80" src="/assets/sci-comp.jpg">
+					<div class="pl-3">
+						<h2 class="mb-2 h6 font-weight-bold">
+						<a class="text-dark" href="/post/{{posts.[2].post_id}}">{{posts.[2].post_title}}</a>
+						</h2>
+						<div class="card-text text-muted small">
+							{{posts.[2].user.username}}
+						</div>
+						<small class="text-muted">{{posts.[2].post_date}} &middot; 5 min read</small>
+					</div>
+				</div>
+        {{/if}} 
+
+
+        {{#if posts.[3]}}
+				<div class="mb-3 d-flex align-items-center">
+					<img height="80" src="/assets/laptop.jpg">
+					<div class="pl-3">
+						<h2 class="mb-2 h6 font-weight-bold">
+						<a class="text-dark" href="/post/{{posts.[3].post_id}}">{{posts.[3].post_title}}</a>
+						</h2>
+						<div class="card-text text-muted small">
+							 {{posts.[3].user.username}}
+						</div>
+						<small class="text-muted">{{posts.[2].post_date}} &middot; 5 min read</small>
+					</div>
+				</div>
+        {{/if}} 
+
+
+        {{#if posts.[4]}}
+				<div class="mb-3 d-flex align-items-center">
+					<img height="80" src="/assets/tech-computer-landing.jpg">
+					<div class="pl-3">
+						<h2 class="mb-2 h6 font-weight-bold">
+						<a class="text-dark" href="/post/{{posts.[4].post_id}}">{{posts.[4].post_title}}</a>
+						</h2>
+						<div class="card-text text-muted small">
+							 {{posts.[4].user.username}}
+						</div>
+						<small class="text-muted">{{posts.[2].post_date}} &middot; 5 min read</small>
+					</div>
+				</div>
+         {{/if}} 
+		
+			</div>
+		</div>
+	</div>
 </div>
+
+
+
+{{#each blogs as |blog|}}
+  <article class="blog-post">
+    <h2 class="blog-post-title mb-1">{{blog.post_title}}</h2>
+    <p class="blog-post-topic mb2 text-success">{{blog.post_topic}}</p>
+    <p class="blog-post-meta">{{format_date blog.createdAt}}
+      <p>Contributed By: {{blog.user.username}}</p>
+    <a href="/blog/{{blog.post_id}}">View Article</a>
+  </article>
+  <hr />
+{{/each}}
+
+
+<div class="container">
+	<div class="row justify-content-between">
+		<div class="col-md-8">
+			<h5 class="font-weight-bold spanborder"><span>All Stories</span></h5>
+			{{#each posts as |post|}}
+			<div class="mb-3 d-flex justify-content-between">
+				<div class="pr-3">
+					<h2 class="mb-1 h4 font-weight-bold">
+					<a class="text-dark" href="/blog/{{post.post_id}}">{{post.post_title}}</a>
+					</h2>
+					<p>
+						{{getFirstSentence post.post_body}}
+					</p>
+					<div class="card-text text-muted small">
+						 {{post.user.username}}
+					</div>
+					<small class="text-muted">{{post.post_date}} &middot; 5 min read</small>
+				</div>
+				<img height="120" src="./assets/img/demo/blog8.jpg">
+			</div>
+			{{/each}}
+		</div>
+		<div class="col-md-4 pl-4">
+            <h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
+			<ol class="list-featured">
+				<li>
+				<span>
+				<h6 class="font-weight-bold">
+				<a href="./article.html" class="text-dark">Did Supernovae Kill Off Large Ocean Animals?</a>
+				</h6>
+				<p class="text-muted">
+					Jake Bittle in SCIENCE
+				</p>
+				</span>
+				</li>
+				<li>
+				<span>
+				<h6 class="font-weight-bold">
+				<a href="./article.html" class="text-dark">Humans Reversing Climate Clock: 50 Million Years</a>
+				</h6>
+				<p class="text-muted">
+					Jake Bittle in SCIENCE
+				</p>
+				</span>
+				</li>
+				<li>
+				<span>
+				<h6 class="font-weight-bold">
+				<a href="./article.html" class="text-dark">Unprecedented Views of the Birth of Planets</a>
+				</h6>
+				<p class="text-muted">
+					Jake Bittle in SCIENCE
+				</p>
+				</span>
+				</li>
+				<li>
+				<span>
+				<h6 class="font-weight-bold">
+				<a href="./article.html" class="text-dark">Effective New Target for Mood-Boosting Brain Stimulation Found</a>
+				</h6>
+				<p class="text-muted">
+					Jake Bittle in SCIENCE
+				</p>
+				</span>
+				</li>
+			</ol>
+		</div>
+	</div>
 </div>
+
+
+
+
+
+

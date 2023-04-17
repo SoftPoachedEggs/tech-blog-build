@@ -21,6 +21,7 @@
   "homepage": "https://github.com/softpoachedeggs/tech-blog-build.git",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cloudinary": "^1.35.0",
     "connect-session-sequelize": "^7.1.5",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
@@ -31,6 +32,7 @@
     "sequelize": "^6.29.1"
   },
   "devDependencies": {
+    "gulp": "^4.0.2",
     "prettier": "2.8.7"
   }
 }

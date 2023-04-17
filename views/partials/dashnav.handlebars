@@ -1,10 +1,29 @@
-  <header class="hero">
-    <h1 class="app-title"><a href="/">Techlicious Trends</a></h1>
-<nav class="nav">
-    <ul>
-      <li class="li-inline nav-item"><a href="/dashboard">View Posts</a></li>
-      <li class="li-inline nav-item"><a href="/new-post" id="new-post-link">New Post</a></li>
-      <li class="li-inline nav-item"><a href="/" id="logout-link">Logout</a></li>
-    </ul>
-  </nav>
- </header>
+
+<header>
+  <!-- Navbar -->
+<nav class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
+<div class="container">
+	<a class="navbar-brand" href="/"><strong>Tech-licious</strong></a>
+	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="navbar-collapse collapse" id="navbarColor02" style="">
+		<ul class="navbar-nav mr-auto d-flex align-items-center">
+			<li class="nav-item">
+			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="/dashboard">View Posts</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="/new-post">New Post</a>
+			</li>
+			</ul>
+			<ul class="navbar-nav ml-auto align-items-center"> <!-- Updated to use ml-auto for right alignment -->
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Sign Out</a>
+          </li>
+        </ul>
+	</div>
+</div>
+</nav>
