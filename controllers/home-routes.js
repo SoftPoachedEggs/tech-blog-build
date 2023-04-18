@@ -5,24 +5,23 @@ const { Comment, Post, User } = require("../Models");
 // get all posts for homepage
 router.get("/", async (req, res) => {
   try {
-    // we need to get all Posts and include the User for each (change lines 8 and 9)
-    const postData = await Post.findAll({
+      const postData = await Post.findAll({
       include: [{ model: User }],
     });
     // serialize the data
     const posts = postData.map((post) => post.get({ plain: true }));
-    // we should render all the posts here
     const sessionData = {
       isLoggedIn: req.session.loggedIn,
       username: req.session.username,
+      user_id: req.session.user_id,
     };
-    res.render("home", { posts, sessionData });
+    res.render("homeview", { posts, sessionData });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//GET STINGLE POST ------TODO Render clicked blog post on page.
+//GET STINGLE POST ------TODO Render clicked blog post on page with comments
 router.get("/post/:id", async (req, res) => {
   try {
     const postData = await Post.findOne({
@@ -56,23 +55,31 @@ router.get("/post/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-//~~~~~~~~~~~GET COMMENTS~~~~~~~~~~~
 
-// router.get('/comment/:id', async (req, res) => {
-// try {
-//   const commentData = await Comment.findAll({
-//     include: [{ model: User }],
-//     where: {
-//       post_id: req.params.id,
-//     },
-//   });
-//   const userComments = commentData.map((comment) => comment.get({ plain: true }));
-//   res.status(200).json(userComments);
-//   console.log('userComments: ', userComments)
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// })
+//topic page list route
+router.get("/topic/:topic", async (req, res) => {
+  try {
+    const topic = req.params.topic;
+    const postData = await Post.findAll({
+      where: {
+        post_topic: req.params.topic,
+      },
+      include: [{ model: User }],
+    });
+        // serialize the data
+        const posts = postData.map((post) => post.get({ plain: true }));
+        // we should render all the posts here
+        const sessionData = {
+          isLoggedIn: req.session.loggedIn,
+          username: req.session.username,
+          user_id: req.session.user_id,
+        };
+        res.render("topicview", { posts, sessionData, topic });
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    });
+
 
 //~~~~~LOGIN GET ROUTE~~~~~~~~~~
 router.get("/login", (req, res) => {

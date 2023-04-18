@@ -1,3 +1,9 @@
+{{#if sessionData.isLoggedIn}}
+  {{>dashnav}}
+{{else}}
+{{>navbar}}
+{{/if}}
+
 <div class="container">
   {{#if posts.[0]}}
 	<div class="jumbotron jumbotron-fluid mb-3 pt-0 pb-0 bg-lightblue position-relative">
@@ -93,21 +99,7 @@
 		</div>
 	</div>
 </div>
-
-
-
-{{#each blogs as |blog|}}
-  <article class="blog-post">
-    <h2 class="blog-post-title mb-1">{{blog.post_title}}</h2>
-    <p class="blog-post-topic mb2 text-success">{{blog.post_topic}}</p>
-    <p class="blog-post-meta">{{format_date blog.createdAt}}
-      <p>Contributed By: {{blog.user.username}}</p>
-    <a href="/blog/{{blog.post_id}}">View Article</a>
-  </article>
-  <hr />
-{{/each}}
-
-
+{{!-- All stories rendered as list section --}}
 <div class="container">
 	<div class="row justify-content-between">
 		<div class="col-md-8">
@@ -126,50 +118,51 @@
 					</div>
 					<small class="text-muted">{{post.post_date}} &middot; 5 min read</small>
 				</div>
-				<img height="120" src="./assets/img/demo/blog8.jpg">
+				<img height="120" src="{{post.image_url}}">
 			</div>
 			{{/each}}
 		</div>
+{{!-- Popular Posts display section --}}
 		<div class="col-md-4 pl-4">
             <h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
 			<ol class="list-featured">
 				<li>
 				<span>
 				<h6 class="font-weight-bold">
-				<a href="./article.html" class="text-dark">Did Supernovae Kill Off Large Ocean Animals?</a>
+				<a href="/post/{{posts.[4].post_id}}" class="text-dark">{{posts.[2].post_title}}</a>
 				</h6>
 				<p class="text-muted">
-					Jake Bittle in SCIENCE
+					{{getFirstSentence posts.[2].post_body}}
 				</p>
 				</span>
 				</li>
 				<li>
 				<span>
 				<h6 class="font-weight-bold">
-				<a href="./article.html" class="text-dark">Humans Reversing Climate Clock: 50 Million Years</a>
+				<a href="/post/{{posts.[4].post_id}}" class="text-dark">{{posts.[4].post_title}}</a>
 				</h6>
 				<p class="text-muted">
-					Jake Bittle in SCIENCE
+					{{getFirstSentence posts.[4].post_body}}
 				</p>
 				</span>
 				</li>
 				<li>
 				<span>
 				<h6 class="font-weight-bold">
-				<a href="./article.html" class="text-dark">Unprecedented Views of the Birth of Planets</a>
+				<a href="/post/{{posts.[0].post_id}}" class="text-dark">{{posts.[0].post_title}}</a>
 				</h6>
 				<p class="text-muted">
-					Jake Bittle in SCIENCE
+					{{getFirstSentence posts.[0].post_body}}
 				</p>
 				</span>
 				</li>
 				<li>
 				<span>
 				<h6 class="font-weight-bold">
-				<a href="./article.html" class="text-dark">Effective New Target for Mood-Boosting Brain Stimulation Found</a>
+				<a href="/post/{{posts.[1].post_id}}" class="text-dark">{{posts.[1].post_title}}</a>
 				</h6>
 				<p class="text-muted">
-					Jake Bittle in SCIENCE
+					{{getFirstSentence posts.[1].post_body}}E
 				</p>
 				</span>
 				</li>

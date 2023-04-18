@@ -10,7 +10,6 @@
             {{#each userPosts as |blogPost|}}
               <article class="blog-post">
                 <h2 class="blog-post-title mb-1">{{blogPost.post_title}}</h2>
-                <p
                 <p class="blog-post-meta">Created:
                   {{blogPost.post_date}}</p>
                 <a href="/edit/{{blogPost.post_id}}" class="text-grey">Edit Article</a>
@@ -18,7 +17,7 @@
               <hr />
             {{/each}}
           {{else}}
-            <h2>You Haven't Written Any Articles Yet...</h2>
+            <h2>Click New Post to write your first article...</h2>
           {{/if}}
         </div>
       </div>

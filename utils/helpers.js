@@ -8,21 +8,14 @@ module.exports = {
     }
   },
   getFirstSentence: (text) => {
+    // Check if text is undefined or null, and provide a default value if needed
+    text = text ?? "";
     var sentences = text.split(/(?<=[.?!])\s+/);
     if (sentences.length > 0) {
       // Return the first sentence
       return sentences[0];
     } else {
       return "";
-    }
-  },
-  replacePTag: (text) => {
-    if (text.includes('<p>')) {
-      // Replace <p> tags with <br> tags
-      var replacedText = text.replace(/<p>/g, '\n').replace(/<\/p>/g, '');
-      return replacedText
-    } else {
-      return text;
     }
   },
     checkUser: (sessionData, blog, options) => {
@@ -35,4 +28,12 @@ module.exports = {
         return options.fn(this);
       }
     },
+      // Check if the input is a string
+    capitalizeTopic: (text) => {  
+      if (typeof text === 'string') {
+      // Capitalize the first letter of the word
+      return text.charAt(0).toUpperCase() + text.slice(1);
+    }
+    return text;
+    }
   };

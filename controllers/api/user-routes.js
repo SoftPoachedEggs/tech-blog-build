@@ -4,6 +4,7 @@ const Post  = require('../../models/post');
 const Comment  = require('../../models/comment');
 const withAuth = require('../../utils/auth');
 
+//cloudinary setup
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -23,7 +24,7 @@ router.post('/signup', async (req, res) => {
     });
 
     req.session.save(() => {
-      req.session.userId = newUser.user_id;
+      req.session.user_id = newUser.user_id;
       req.session.username = newUser.username;
       req.session.loggedIn = true;
 
@@ -57,7 +58,7 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.userId = user.id;
+      req.session.user_id = user.user_id;
       req.session.username = user.username;
       req.session.loggedIn = true;
 
@@ -68,8 +69,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-//Logout post request
-
 
 //~~~~~~~~~~~~~~~~USER BLOG-POST ROUTES~~~~~~~~~~~~~~~~~~ 
 
@@ -77,7 +76,7 @@ router.post('/login', async (req, res) => {
 router.post('/new-post', async (req, res) => {
   try {
     const newPost = await Post.create({
-      user_id: req.session.userId,
+      user_id: req.session.user_id,
       post_title: req.body.post_title,
       post_body: req.body.post_body,
       post_date: req.body.post_date,
@@ -108,7 +107,7 @@ router.put('/edit/:id', withAuth, async (req, res) => {
 
 
 //USER BLOG-POST DELETE REQUEST
-router.delete('/edit/:id', withAuth, async (req, res) => {
+router.delete('/delete/:id', withAuth, async (req, res) => {
   try {
     const deletePost = Post.destroy({
       where: {
@@ -125,7 +124,7 @@ router.delete('/edit/:id', withAuth, async (req, res) => {
 router.post('/comment', withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create({
-      user_id: req.session.userId,
+      user_id: req.session.user_id,
       post_id: req.body.post_id,
       comment_text: req.body.comment_text,
       comment_date: req.body.comment_date,

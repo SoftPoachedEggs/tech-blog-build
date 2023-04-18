@@ -7,17 +7,20 @@ router.get("/dashboard", withAuth, async (req, res) => {
     const postData = await Post.findAll({
       include: [{ model: User }],
       where: {
-        user_id: req.session.userId,
+        user_id: req.session.user_id,
       },
     });
     const userPosts = postData.map((b) => b.get({ plain: true }));
+
     const sessionData = {
       isLoggedIn: req.session.loggedIn,
       username: req.session.username,
     };
+
     console.log("This is the sessionData.username", sessionData.username);
     console.log("This is the userPosts", userPosts);
-    res.render("dashboard", { userPosts, sessionData });
+    
+    res.render("dashview", { userPosts, sessionData });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -30,7 +33,6 @@ router.get("/new-post", withAuth, (req, res) => {
   res.render("new-post");
 });
 
-//logout
 router.get('/logout', async (req, res) => {
   try {
   req.session.destroy((err) => {
@@ -64,4 +66,4 @@ router.get("/edit/:id", withAuth, async (req, res) => {
 
 module.exports = router;
 
-//res.status(200).json(userPost);
+

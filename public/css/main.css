@@ -4254,7 +4254,7 @@ input[type="button"].btn-block {
     background-color: #c6e2d0; }
 
 .jumbotron {
-  position: absolute
+  position: absolute;
   padding: 2rem 1rem;
   margin-bottom: 2rem;
   background-color: #e9ecef;

@@ -5,6 +5,7 @@ const bodyEl = document.querySelector('#edit-content');
 
 console.log("post number being updated: ", postId)
 
+//edit post handlers. 
 const editFormHandler = async function() {
   console.log('edit btn clicked: ')
 
@@ -20,32 +21,27 @@ const editFormHandler = async function() {
     headers: {
       'Content-Type': 'application/json'
     }
-  });
+  }).then(redirectDashboard());
+};
+
+//delete post handler
+const deleteClickHandler = async () => {
+  const confirmDelete = confirm("Are you sure you want to delete this post?");
+  if (confirmDelete) {
+    await fetch(`/api/user/delete/${postId}`, {
+      method: "DELETE"
+    })
+    .then(redirectDashboard())
+}};
+
+//redirect function for cancel / delete. 
+let redirectDashboard = () => {
   document.location.replace('/dashboard');
-};
-
-const deleteClickHandler = async function () {
-  try {
-    const confirmDelete = confirm("Are you sure you want to delete this post?");
-    if (confirmDelete) {
-
-      const response = await fetch(`/api/user/edit/${postId}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        document.location.replace("/dashboard");
-        alert("Post Deleted!");
-      } else {
-        alert("Failed to delete post.");
-      }
-    } else {
-      return;
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
+}
+//query selectors for click events
+document
+  .querySelector('#cancel-btn')
+  .addEventListener('click', redirectDashboard);
 document
   .querySelector('#update-btn')
   .addEventListener('click', editFormHandler);

@@ -1,3 +1,4 @@
+//new user signup handler
 const signupFormHandler = async function(event) {
   event.preventDefault();
 
@@ -18,11 +19,11 @@ const signupFormHandler = async function(event) {
     document.location.replace('/dashboard');
     alert('New User Added');
   } else {
-    alert('Failed to sign up');
+    alert('Failed to sign up. Please try again');
   }
 };
 
-
+//click handler for signup button. 
 document
   .querySelector('#submit-account-button')
   .addEventListener('click', signupFormHandler);

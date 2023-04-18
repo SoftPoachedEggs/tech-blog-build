@@ -1,3 +1,4 @@
+//user login handler
 const loginFormHandler = async function(event) {
   event.preventDefault();
 
