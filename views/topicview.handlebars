@@ -3,21 +3,21 @@
 	<div class="row justify-content-between">
 		<div class="col-md-12">
 			<h5 class="font-weight-bold spanborder"><span>{{capitalizeTopic topic}}</span></h5>
-			{{#each posts as |post|}}
+			{{#each topicPosts as |tpost|}}
 			<div class="mb-3 d-flex justify-content-between">
 				<div class="pr-3">
 					<h2 class="mb-1 h4 font-weight-bold">
-					<a class="text-dark" href="/post/{{post.post_id}}">{{post.post_title}}</a>
+					<a class="text-dark" href="/post/{{tpost.post_id}}">{{tpost.post_title}}</a>
 					</h2>
 					<p>
-						{{getFirstSentence post.post_body}}
+						{{getFirstSentence tpost.post_body}}
 					</p>
 					<div class="card-text text-muted small">
-						 {{post.user.username}}
+						 {{tpost.user.username}}
 					</div>
-					<small class="text-muted">{{post.post_date}} &middot; 5 min read</small>
+					<small class="text-muted">{{tpost.post_date}} &middot; 5 min read</small>
 				</div>
-				<img height="120" src="{{post.image_url}}">
+				<img height="120" src="{{tpost.image_url}}">
 			</div>
 			{{/each}}
 		</div>
