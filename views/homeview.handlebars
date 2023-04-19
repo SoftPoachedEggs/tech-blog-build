@@ -104,6 +104,7 @@
 	<div class="row justify-content-between">
 		<div class="col-md-8">
 			<h5 class="font-weight-bold spanborder"><span>All Stories</span></h5>
+			{{#if posts.[0]}}
 			{{#each posts as |post|}}
 			<div class="mb-3 d-flex justify-content-between">
 				<div class="pr-3">
@@ -122,9 +123,11 @@
 			</div>
 			{{/each}}
 		</div>
+		{{/if}}
 {{!-- Popular Posts display section --}}
 		<div class="col-md-4 pl-4">
             <h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
+			{{#if posts.[4]}}
 			<ol class="list-featured">
 				<li>
 				<span>
@@ -167,6 +170,7 @@
 				</span>
 				</li>
 			</ol>
+			{{/if}}
 		</div>
 	</div>
 </div>

@@ -44,7 +44,7 @@ const seedData = [
     <p>As we continue to embrace the technological revolution, let's not forget to take a moment to appreciate the hilarious and unexpected aspects of the tech world. From smartphones to social media, and from AI to virtual reality, technology has given us endless reasons to chuckle, facepalm, and marvel at the wonders of human innovation. So, let's raise a virtual toast to the tech industry, where the future is bright, the possibilities are endless, and the laughter is guaranteed! `,
     post_date: `2023-04-15`,
     post_topic: `humor`,
-    image_url: `https://res.cloudinary.com/dusaigbyn/image/upload/v1681866566/andrea-de-santis-zwd435-ewb4-unsplash_aiikpf.jpg`,
+    image_url: `https://res.cloudinary.com/dusaigbyn/image/upload/v1681866577/jakob-owens-WUmb_eBrpjs-unsplash_u8ijyb.jpg`,
   },
   {
     post_id: `4`,
@@ -90,7 +90,7 @@ const seedData = [
     <p>In conclusion, while tech culture has brought about tremendous advancements and innovations, it is crucial to address the challenges and negative impacts that come with it. The tech industry must prioritize the well-being of individuals, promote diversity and inclusion, prioritize ethical practices and sustainability, and prioritize data privacy and security. Addressing these issues can lead to a more balanced and responsible use of technology and create a better future for all.`,
     post_date: `2023-04-10`,
     post_topic: `culture`,
-    image_url: `https://res.cloudinary.com/dusaigbyn/image/upload/v1681866563/daniel-josef-AMssSjUaTY4-unsplash_vavnz3.jpg`,
+    image_url: `https://res.cloudinary.com/dusaigbyn/image/upload/v1681795103/h4ibqknbawdgotu02t7e.jpg`,
   },
   {
     post_id: `9`,
