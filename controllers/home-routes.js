@@ -24,12 +24,18 @@ router.get("/", async (req, res) => {
 //GET STINGLE POST ------TODO Render clicked blog post on page with comments
 router.get("/post/:id", async (req, res) => {
   try {
-    const postData = await Post.findOne({
+    const getPost = await Post.findOne({
+      //grab one
       where: {
         post_id: req.params.id,
       },
       include: [{ model: User, as: "user" }],
+    })
+    //grab all
+    const postData = await Post.findAll({
+      include: [{ model: User }],
     });
+    //grab comments
     const commentData = await Comment.findAll({
       include: [{ model: User }],
       where: {
@@ -37,20 +43,17 @@ router.get("/post/:id", async (req, res) => {
       },
     });
 
-    const userPost = postData ? postData.get({ plain: true }) : null;
-    
+    const userPost = getPost ? getPost.get({ plain: true }) : null;
+    const posts = postData.map((post) => post.get({ plain: true }));
     const userComments = commentData.map((comment) =>
       comment.get({ plain: true })
     );
-
-    console.log(`user post: `, userPost);
-    console.log("userComments: ", userComments);
-
+    
     const sessionData = {
       isLoggedIn: req.session.loggedIn,
       username: req.session.username,
     };
-    res.render("blogpost", { userPost, sessionData, userComments });
+    res.render("blogpost", { userPost, sessionData, userComments, posts });
   } catch (err) {
     res.status(500).json(err);
   }

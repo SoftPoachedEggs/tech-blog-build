@@ -1,4 +1,4 @@
-const hiddenPostNumber = document.querySelector('.hidden-post-number');
+const hiddenPostNumber = document.querySelector('#hidden-post-number');
 const postId = hiddenPostNumber.textContent
 const titleEl = document.querySelector('#edit-title');
 const bodyEl = document.querySelector('#edit-content');
@@ -38,6 +38,7 @@ const deleteClickHandler = async () => {
 let redirectDashboard = () => {
   document.location.replace('/dashboard');
 }
+
 //query selectors for click events
 document
   .querySelector('#cancel-btn')

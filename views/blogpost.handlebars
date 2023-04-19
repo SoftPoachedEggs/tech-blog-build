@@ -4,7 +4,7 @@
 {{>navbar}}
 {{/if}}
 
-<p class="d-none" id="post-id">{{userPost.post_id}}</p>
+<p style="display:none;" id="post-id">{{userPost.post_id}}</p>
 <div class="container">
 	<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
 		<div class="tofront">
@@ -56,7 +56,7 @@
         <ul>
           {{#each userComments as |comment|}}
             <p>{{comment.comment_text}}</p>
-            <p>By: {{comment.user.username}} Date: {{comment.post_date}}</p> 
+            <p>By: {{comment.user.username}}</p> 
             <p>Date: {{comment.comment_date}}</p>
             <hr />
           {{/each}}

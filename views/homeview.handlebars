@@ -31,7 +31,7 @@
                 <div style="background-image: url(/assets/cyber-sec.jpg); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>               
 				<div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
 					<h2 class="h4 font-weight-bold">
-					<a class="text-dark" href="./article.html">{{posts.[1].post_title}}</a>
+					<a class="text-dark" href="/post/{{posts.[1].post_id}}">{{posts.[1].post_title}}</a>
 					</h2>
 					<p class="card-text">
 						 {{truncateBlog posts.[1].post_body}}...
@@ -74,7 +74,7 @@
 						<div class="card-text text-muted small">
 							 {{posts.[3].user.username}}
 						</div>
-						<small class="text-muted">{{posts.[2].post_date}} &middot; 5 min read</small>
+						<small class="text-muted">{{posts.[3].post_date}} &middot; 5 min read</small>
 					</div>
 				</div>
         {{/if}} 
@@ -90,7 +90,7 @@
 						<div class="card-text text-muted small">
 							 {{posts.[4].user.username}}
 						</div>
-						<small class="text-muted">{{posts.[2].post_date}} &middot; 5 min read</small>
+						<small class="text-muted">{{posts.[4].post_date}} &middot; 5 min read</small>
 					</div>
 				</div>
          {{/if}} 
@@ -108,7 +108,7 @@
 			<div class="mb-3 d-flex justify-content-between">
 				<div class="pr-3">
 					<h2 class="mb-1 h4 font-weight-bold">
-					<a class="text-dark" href="/blog/{{post.post_id}}">{{post.post_title}}</a>
+					<a class="text-dark" href="/post/{{post.post_id}}">{{post.post_title}}</a>
 					</h2>
 					<p>
 						{{getFirstSentence post.post_body}}
