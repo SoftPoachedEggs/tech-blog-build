@@ -17,9 +17,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
       username: req.session.username,
     };
 
-    console.log("This is the sessionData.username", sessionData.username);
-    console.log("This is the userPosts", userPosts);
-    
     res.render("dashview", { userPosts, sessionData });
   } catch (err) {
     console.error(err);
@@ -33,19 +30,19 @@ router.get("/new-post", withAuth, (req, res) => {
   res.render("new-post");
 });
 
-router.get('/logout', async (req, res) => {
+router.get("/logout", async (req, res) => {
   try {
-  req.session.destroy((err) => {
-    if (err) {
-      console.error('Failed to destroy session:', err);
-    } else {
-      // Redirect the user to the login page or any other appropriate page
-      res.redirect('/'); // Replace with the actual URL of the login page
-    }
-  });
-} catch (err) {
-  res.status(400).json({ message: 'No user account found!' });
-}
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Failed to destroy session:", err);
+      } else {
+        // Redirect the user to the login page or any other appropriate page
+        res.redirect("/"); // Replace with the actual URL of the login page
+      }
+    });
+  } catch (err) {
+    res.status(400).json({ message: "No user account found!" });
+  }
 });
 
 //EDIT STINGLE POST
@@ -57,7 +54,6 @@ router.get("/edit/:id", withAuth, async (req, res) => {
       },
     });
     const userPost = postData ? postData.get({ plain: true }) : null;
-    console.log("this is userPost: ", userPost);
     res.render("edit-post", { userPost });
   } catch (err) {
     res.status(500).json(err);
@@ -65,5 +61,3 @@ router.get("/edit/:id", withAuth, async (req, res) => {
 });
 
 module.exports = router;
-
-

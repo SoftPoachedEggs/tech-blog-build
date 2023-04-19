@@ -18,22 +18,12 @@ module.exports = {
       return "";
     }
   },
-    checkUser: (sessionData, blog, options) => {
-      console.log(
-        "This is the sessionData and blog from the helper",
-        sessionData,
-        blog
-      );
-      if (sessionData.username === blog.post.username) {
-        return options.fn(this);
-      }
-    },
-      // Check if the input is a string
-    capitalizeTopic: (text) => {  
-      if (typeof text === 'string') {
+  // Check if the input is a string
+  capitalizeTopic: (text) => {
+    if (typeof text === "string") {
       // Capitalize the first letter of the word
       return text.charAt(0).toUpperCase() + text.slice(1);
     }
     return text;
-    }
-  };
+  },
+};
