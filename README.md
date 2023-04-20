@@ -9,7 +9,7 @@
 - [Questions](#questions)
 
 ## Description
-The CSM blog site is a web application built using Express, Sequelize, JavaScript, and Node.js. It provides a user-friendly interface for creating, editing, and publishing blog posts related to science and technology. The application includes features such as user registration, login, comments, search functionality, and social media sharing. The database schema is designed using Sequelize models for efficient data storage and retrieval. Overall, the CSM blog site leverages the power of these technologies to provide a seamless and scalable user experience.
+This CSM blog style site is a web application built using Express, Sequelize, JavaScript, and Node.js. It provides a user-friendly interface for creating, editing, and publishing blog posts related to science and technology. The application includes features such as user registration, login, comments, search functionality, and social media sharing. The database schema is designed using Sequelize models for efficient data storage and retrieval. Overall, the CSM blog site leverages the power of these technologies to provide a seamless and scalable user experience.
 ## Install
 1. Create .env folder and input mysql login key values. For cloudinary, you will need to create an API password. The credentials and instructions for use of the widget are provided on cloudinaries documentation.
 ## Use
