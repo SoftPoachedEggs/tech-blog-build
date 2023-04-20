@@ -15,7 +15,7 @@ The CSM blog site is a web application built using Express, Sequelize, JavaScrip
 ## Use
 For educational purposes only.
 ## Visual
-![Visual]<img width="1398" alt="Screenshot 2023-04-20 at 1 16 17 AM" src="https://user-images.githubusercontent.com/115499632/233264966-73a8b032-fb39-46a9-b99e-07d829af4d80.png">
+![Visual] <img width="1398" alt="Screenshot 2023-04-20 at 1 16 17 AM" src="https://user-images.githubusercontent.com/115499632/233264966-73a8b032-fb39-46a9-b99e-07d829af4d80.png">
 
 ## Contributing
 Cloudinary
@@ -25,4 +25,3 @@ Visit https://opensource.org/licenses/MIT for more information.
 ## Questions
 For any questions, please contact me at either of the following:
 * SoftPoachedEggs
-* 
